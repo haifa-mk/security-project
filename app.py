@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, session, url_for
 import sqlite3
 
 app = Flask(__name__)
-# ❌ Weak secret key (too simple, should be random and hidden in production)
+#  Weak secret key (too simple, should be random and hidden in production)
 app.secret_key = 'supersecretkey'
 
 # Initialize database
@@ -13,12 +13,12 @@ def init_db():
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT UNIQUE NOT NULL,
-            password TEXT NOT NULL,  -- ❌ Password stored as plain text (no hashing)
+            password TEXT NOT NULL,  --  Password stored as plain text (no hashing)
             name TEXT NOT NULL,
             email TEXT NOT NULL,
             phone TEXT NOT NULL,
             age INTEGER NOT NULL,
-            bio TEXT  -- ❌ No input sanitization on bio field (XSS possible)
+            bio TEXT  --  No input sanitization on bio field (XSS possible)
         )
     ''')
     conn.commit()
@@ -45,7 +45,7 @@ def register():
     conn = sqlite3.connect('users.db')
     c = conn.cursor()
     try:
-        # ❌ Vulnerable to SQL Injection: user inputs directly injected into SQL query
+        #  Vulnerable to SQL Injection: user inputs directly injected into SQL query
         c.execute(f"INSERT INTO users (username, password, name, email, phone, age, bio) VALUES ('{username}', '{password}', '{name}', '{email}', '{phone}', '{age}', '{bio}')")
         conn.commit()
     except sqlite3.IntegrityError:
@@ -62,13 +62,13 @@ def login():
 
     conn = sqlite3.connect('users.db')
     c = conn.cursor()
-    # ❌ Vulnerable to SQL Injection: username and password values injected directly into SQL query
+    #  Vulnerable to SQL Injection: username and password values injected directly into SQL query
     c.execute(f"SELECT * FROM users WHERE username='{username}' AND password='{password}'")
     user = c.fetchone()
     conn.close()
 
     if user:
-        # ❌ Weak session management: storing sensitive user information without validation
+        #  Weak session management: storing sensitive user information without validation
         session['username'] = user[1]
         return redirect('/dashboard')
     else:
@@ -83,7 +83,7 @@ def dashboard():
 
     conn = sqlite3.connect('users.db')
     c = conn.cursor()
-    # ❌ Vulnerable to SQL Injection: username value directly injected into SQL query
+    #  Vulnerable to SQL Injection: username value directly injected into SQL query
     c.execute(f"SELECT * FROM users WHERE username='{username}'")
     user = c.fetchone()
     conn.close()
