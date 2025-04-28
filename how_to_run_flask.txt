@@ -1,0 +1,15 @@
+On Windows:
+set FLASK_APP=app.py
+set FLASK_ENV=development
+flask run
+
+mac/linux
+export FLASK_APP=app.py
+export FLASK_ENV=development
+flask run
+
+After running the Flask server, you will see something like:
+
+ * Running on http://127.0.0.1:5000/
+Open your browser and visit:
+http://127.0.0.1:5000/

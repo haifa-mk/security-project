@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up</title>
+    <link rel="stylesheet" href="../static/login.css">
+    <script src="../static/script.js" defer></script>
+</head>
+<body>
+    <div class="form-structor">
+        <!-- Sign Up Form -->
+        <div class="signup">
+            <h2 class="form-title" id="signup"><span>or</span>Sign Up</h2>
+            <form method="POST" action="/register">
+                <div class="form-holder">
+                    <input type="text" name="name" class="input" placeholder="Full Name" required />
+                    <input type="email" name="email" class="input" placeholder="Email" required />
+                    <input type="text" name="phone" class="input" placeholder="Phone Number" required />
+                    <input type="number" name="age" class="input" placeholder="Age" required />
+                    <input type="text" name="username" class="input" placeholder="Username" required />
+                    <input type="password" name="password" class="input" placeholder="Password" required />
+                    <input type="text" name="bio" class="input" placeholder="Short Bio" required /> 
+                </div>
+                <button type="submit" name="signup" class="submit-btn">Sign Up</button>
+            </form>
+        </div>
+
+        <!-- Login Form -->
+        <div class="login slide-up">
+            <div class="center">
+                <h2 class="form-title" id="login"><span>or</span>Log In</h2>
+
+                {% if error == 'invalid' %}
+                    <p style="color: red; text-align: center;">Invalid username or password. Please try again.</p>
+                {% endif %}
+
+                <form method="POST" action="/login">
+                    <div class="form-holder">
+                        <input type="text" name="username" class="input" placeholder="Username" required />
+                        <input type="password" name="password" class="input" placeholder="Password" required />
+                    </div>
+                    <button type="submit" name="login" class="submit-btn">Log In</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const showLogin = "{{ show_login }}";
+            if (showLogin === "True") {
+                document.querySelector('.login').classList.remove('slide-up');
+                document.querySelector('.signup').classList.add('slide-up');
+            }
+        }
+    </script>
+</body>
+</html>
