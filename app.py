@@ -53,9 +53,9 @@ def register():
         #c.execute(f"INSERT INTO users (username, password, name, email, phone, age, bio) VALUES ('{username}', '{password}', '{name}', '{email}', '{phone}', '{age}', '{bio}')")
         # new secure code
         c.execute("""
-            INSERT INTO users (username, password, name, email, phone, age, bio, role)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """, (username, hashed_password, name, email, phone, age, bio, 'user'))
+            INSERT INTO users (username, password, name, email, phone, age, bio)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (username, hashed_password, name, email, phone, age, bio))
 
         
         conn.commit()
@@ -106,7 +106,7 @@ def dashboard():
     c = conn.cursor()
     #  Vulnerable to SQL Injection: username value directly injected into SQL query
     # c.execute(f"SELECT * FROM users WHERE username='{username}'")
-    
+
      # new secure code
     c.execute("SELECT * FROM users WHERE username=?", (username,))
     user = c.fetchone()
