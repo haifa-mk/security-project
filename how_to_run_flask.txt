@@ -14,5 +14,3 @@ After running the Flask server, you will see something like:
 Open your browser and visit:
 http://127.0.0.1:5000/ 
 
-
-هذي بس طريقه الرن
