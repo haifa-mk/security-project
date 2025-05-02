@@ -54,6 +54,7 @@ To verify RBAC:
 -`Username: Alaa`
 
 -`Password: Ilovecats`
+
 2. Try visiting the admin page by replacing `/dashboard` with `/admin`.
 3. **Expected Result**: "Access denied, you are not an admin!" message with a 403 error.
 
@@ -62,5 +63,6 @@ To verify RBAC:
 -`Username: Admin` 
 
 -`Password: 12` 
+
 2. Try visiting the admin page by replacing `/dashboard` with `/admin`.
 3. **Expected Result**: "Welcome to the admin panel!" message.
