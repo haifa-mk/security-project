@@ -41,7 +41,7 @@ To verify XSS protection:
 <script>alert("You have been hacked!!")</script>
 ```
 3. Submit the registration form.
-4. After registration, log in.
+4. After registration, login.
 5.  **Expected Result**: The JavaScript alert should not run, and the <script> tag will be displayed as regular text.
 
 ### Role-Based Access Control (RBAC)
@@ -51,21 +51,17 @@ The application implements RBAC to control access to specific parts of the syste
 To verify RBAC:
 
 **User login:**
-1. Log in as a regular user using the following credentials:
-
--`Username: Alaa`
-
--`Password: Ilovecats`
-
-2. Try visiting the admin page by replacing `/dashboard` with `/admin`.
-3. **Expected Result**: "Access denied, you are not an admin!" message with a 403 error.
+1. Start registering a new user through the application.
+2. After registration, login.
+3. Try visiting the admin page by replacing `/dashboard` with `/admin`.
+4. **Expected Result**: "Access denied, you are not an admin!" message with a 403 error.
 
 **Admin login:**
-1. Log in as an admin using the following credentials:
-   
--`Username: admin` 
+1. Start registering a new user through the application.
+2. During registration use:
 
--`Password: 12` 
+-`Username: admin`, this makes the role an admin role
 
-2. Try visiting the admin page by replacing `/dashboard` with `/admin`.
-3. **Expected Result**: "Welcome to the admin panel!" message.
+3. After registration, login.
+4. Try visiting the admin page by replacing `/dashboard` with `/admin`.
+5. **Expected Result**: "Welcome to the admin panel!" message.
