@@ -43,3 +43,20 @@ To verify XSS protection:
 3. Submit the registration form.
 4. After registration, log in.
 5.  **Expected Result**: The JavaScript alert should not run, and the <script> tag will be displayed as regular text.
+
+### Role-Based Access Control (RBAC)
+
+The application implements RBAC to control access to specific parts of the system based on a user’s role (admin or user), as stored in the database. This prevents unauthorized users from accessing sensitive routes like the admin panel.
+
+To verify RBAC:
+1. Log in as a regular user using the following credentials:
+`Username: ```Alaa``` `
+`Password: ```Ilovecats``` `
+2. Try visiting the admin page by replacing `/dashboard` with `/admin`.
+3. **Expected Result**: "Access denied, you are not an admin!" message with a 403 error.
+
+1. Log in as an admin using the following credentials:
+`Username: ```Admin``` `
+`Password: ```12``` `
+2. Try visiting the admin page by replacing `/dashboard` with `/admin`.
+3. **Expected Result**: "Welcome to the admin panel!" message.
