@@ -62,3 +62,18 @@ To verify RBAC:
 3. After registration, login.
 4. Try visiting the admin page by replacing `/dashboard` with `/admin`.
 5. **Expected Result**: "Welcome to the admin panel!" message.
+
+### Encryption Using Session Tokens and HTTPS
+To protect sensitive data, encryption is used. Passwords are protected with bcrypt as mentioned above. Further, Flask sessions are protected with: 
+1. A strong secret key generated using `os.urandom(24)`, 
+2. `SESSION_COOKIE_HTTPONLY=True`, blocks JavaScript from accessing session cookies.
+3. `SESSION_COOKIE_SECURE=True`, cookies are only sent over HTTPS.
+4. `SESSION_COOKIE_SAMESITE='Lax'`, helps mitigate Cross-Site Request Forgery (CSRF) attacks. CSRF is an attack that forces an end user to execute unwanted actions on a web application in which they’re currently authenticated.
+
+Finally, the app is configured to run over HTTPS using a local SSL certificate. To verify, search on your browser:
+```
+https://127.0.0.1:5000/
+```
+
+
+
