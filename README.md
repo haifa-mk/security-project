@@ -60,7 +60,7 @@ To verify RBAC:
 1. Start registering a new user through the application.
 2. During registration use:
 
--`Username: admin`, this makes the role an admin role
+`Username: admin`, this makes the role an admin role.
 
 3. After registration, login.
 4. Try visiting the admin page by replacing `/dashboard` with `/admin`.
