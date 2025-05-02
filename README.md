@@ -36,7 +36,7 @@ The application uses the bleach library to sanitize user-generated HTML content 
 
 To verify XSS protection:
 1. Start registering a new user through the application.
-2. During registeration, in the bio field, enter a script tag like:
+2. During registration, in the bio field, enter a script tag like:
 ```
 <script>alert("You have been hacked!!")</script>
 ```
