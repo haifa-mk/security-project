@@ -29,3 +29,17 @@ To verify the hashing:
 2. Open the `users.db` file using DB Browser for SQLite.
 3. Navigate to the `users` table and view the `password` column.
 4. **Expected Result**: The stored password should appear as a long, hashed string starting with `$2b$`, confirming that bcrypt hashing is applied and passwords are not stored in plain text.
+
+### Cross-Site Scripting (XSS) Protection Using Input Sanitization
+
+The application uses the bleach library to sanitize user-generated HTML content (e.g., the user bio) before storing or displaying it. This prevents malicious scripts from being injected and executed in the browser.
+
+To verify XSS protection:
+1. Start registering a new user through the application.
+2. During registeration, in the bio field, enter a script tag like:
+```
+<script>alert("You have been hacked!!")</script>
+```
+3. Submit the registration form.
+4. After registration, log in.
+5.  **Expected Result**: The JavaScript alert should not run, and the <script> tag will be displayed as regular text.
