@@ -58,10 +58,7 @@ To verify RBAC:
 
 **Admin login:**
 1. Start registering a new user through the application.
-2. During registration use:
-
-   `Username: admin`, this makes the role an admin role.
-
+2. During registration use: `Username: admin`, this makes the role an admin role.
 3. After registration, login.
 4. Try visiting the admin page by replacing `/dashboard` with `/admin`.
 5. **Expected Result**: "Welcome to the admin panel!" message.
