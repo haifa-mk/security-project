@@ -63,7 +63,7 @@ To verify RBAC:
 **Admin login:**
 1. Log in as an admin using the following credentials:
    
--`Username: Admin` 
+-`Username: admin` 
 
 -`Password: 12` 
 
