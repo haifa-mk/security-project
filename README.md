@@ -49,6 +49,8 @@ To verify XSS protection:
 The application implements RBAC to control access to specific parts of the system based on a user’s role (admin or user), as stored in the database. This prevents unauthorized users from accessing sensitive routes like the admin panel.
 
 To verify RBAC:
+
+**User login:**
 1. Log in as a regular user using the following credentials:
 
 -`Username: Alaa`
@@ -58,6 +60,7 @@ To verify RBAC:
 2. Try visiting the admin page by replacing `/dashboard` with `/admin`.
 3. **Expected Result**: "Access denied, you are not an admin!" message with a 403 error.
 
+**Admin login:**
 1. Log in as an admin using the following credentials:
    
 -`Username: Admin` 
