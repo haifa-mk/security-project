@@ -18,7 +18,7 @@ All required Python packages are listed in [`requirements.txt`](requirements.txt
 1. Go to the login page.
 2. In the **username** field, enter the following:
 ```
-' OR '1'='1
+ OR '1'='1'
 ```
 ### Password Hashing with bcrypt
 
