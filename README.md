@@ -50,13 +50,13 @@ The application implements RBAC to control access to specific parts of the syste
 
 To verify RBAC:
 1. Log in as a regular user using the following credentials:
-`Username: ```Alaa``` `
-`Password: ```Ilovecats``` `
+-`Username: Alaa`
+-`Password: Ilovecats`
 2. Try visiting the admin page by replacing `/dashboard` with `/admin`.
 3. **Expected Result**: "Access denied, you are not an admin!" message with a 403 error.
 
 1. Log in as an admin using the following credentials:
-`Username: ```Admin``` `
-`Password: ```12``` `
+-`Username: Admin` 
+-`Password: 12` 
 2. Try visiting the admin page by replacing `/dashboard` with `/admin`.
 3. **Expected Result**: "Welcome to the admin panel!" message.
