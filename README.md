@@ -20,6 +20,10 @@ All required Python packages are listed in [`requirements.txt`](requirements.txt
 ```
  OR '1'='1'
 ```
+3. **Expected Result**: Login will fail, showing that SQL injection is mitigated via parameterized queries.
+
+---
+
 ### Password Hashing with bcrypt
 
 The application uses the bcrypt algorithm to securely hash user passwords before storing them in the database. Bcrypt is a cryptographic hashing function designed for password security.
@@ -70,10 +74,37 @@ To protect sensitive data, encryption is used. Passwords are protected with bcry
 3. `SESSION_COOKIE_SECURE=True`, cookies are only sent over HTTPS.
 4. `SESSION_COOKIE_SAMESITE='Lax'`, helps mitigate Cross-Site Request Forgery (CSRF) attacks. CSRF is an attack that forces an end user to execute unwanted actions on a web application in which they’re currently authenticated.
 
-Finally, the app is configured to run over HTTPS using a local SSL certificate. To verify, search on your browser:
+The app is configured to run over HTTPS using a local SSL certificate. To verify, search on your browser:
 ```
 https://127.0.0.1:5000/
 ```
 
+## Additional Enhancements ✨
 
+### Login Attempt Limiting to Prevent Brute Force
 
+The application tracks login attempts and temporarily blocks IP addresses or accounts after a set number of failed login attempts. This helps prevent brute force attacks and password guessing.
+
+### Request Rate Limiting
+
+To prevent abuse such as spamming or denial of service (DoS) attacks, the server enforces rate limits using Flask-Limiter. Each IP is limited to:
+- **50 requests per hour**
+- **200 requests per day**
+Exceeding this limit results in an error.
+
+### Strong Password Enforcement
+
+Users must choose strong passwords (minimum length, use of uppercase, lowercase, and numbers). This mitigates the risk of account compromise through password guessing or dictionary attacks.
+
+### Profile Picture Upload with Secure Handling
+
+To protect the server and users, file uploads are restricted to safe types (`.gif`, `.jpg`, `.png`, `.jpeg`). Unsupported formats are rejected.
+In addition:
+- File names are sanitized using `werkzeug.utils.secure_filename()` to prevent directory traversal and overwriting system files.
+- Uploaded files are stored in a safe, non-public directory.
+
+To test:
+1. Register and upload an image file.
+2. Confirm that the image displays on your dashboard.
+   
+---
