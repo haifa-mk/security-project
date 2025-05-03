@@ -81,7 +81,7 @@ https://127.0.0.1:5000/
 
 ## Additional Enhancements ✨
 
-### Login Attempt Limiting to Prevent Brute Force
+### Login Attempt Limiting to Prevent Brute Force Attack
 
 The application tracks login attempts and temporarily blocks IP addresses or accounts after a set number of failed login attempts. This helps prevent brute force attacks and password guessing.
 
@@ -94,7 +94,7 @@ Exceeding this limit results in an error.
 
 ### Strong Password Enforcement
 
-Users must choose strong passwords (minimum length, use of uppercase, lowercase, and numbers). This mitigates the risk of account compromise through password guessing or dictionary attacks.
+Users must choose strong passwords (minimum length of 8, use of uppercase and numbers). This mitigates the risk of account compromise through password guessing or dictionary attacks.
 
 ### Profile Picture Upload with Secure Handling
 
