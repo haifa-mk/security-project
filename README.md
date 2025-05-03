@@ -90,6 +90,7 @@ The application tracks login attempts and temporarily blocks IP addresses or acc
 To prevent abuse such as spamming or denial of service (DoS) attacks, the server enforces rate limits using Flask-Limiter. Each IP is limited to:
 - **50 requests per hour**
 - **200 requests per day**
+
 Exceeding this limit results in an error.
 
 ### Strong Password Enforcement
