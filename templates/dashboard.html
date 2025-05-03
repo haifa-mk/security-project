@@ -8,17 +8,26 @@
 </head>
 <body>
     <div class="dashboard-container">
-        <h1>Welcome, {{ name }}!</h1>
+        <h1>Welcome, {{ user.name }}!</h1>
+        {% if user['pfp_path'] %}
+            <div class="pfp-container">
+                <img src="{{ '/' + user.pfp_path }}" alt="Profile Picture" class="pfp">
+            </div>
+        {% else %}
+            <div class="pfp-container">
+                <img src="{{ url_for('static', filename='uploads/default-avatar.png') }}" alt="Default Profile Picture" class ="pfp">
+            </div>
+        {% endif %}
 
         <div class="user-details">
             <h2>Your Profile Information:</h2>
             <ul>
-                <li><strong>Username:</strong> {{ username }}</li>
-                <li><strong>Full Name:</strong> {{ name }}</li>
-                <li><strong>Email:</strong> {{ email }}</li>
-                <li><strong>Phone Number:</strong> {{ phone }}</li>
-                <li><strong>Age:</strong> {{ age }}</li>
-                <li><strong>Bio:</strong> {{ bio | safe }}</li> 
+                <li><strong>Username:</strong> {{ user.username }}</li>
+                <li><strong>Full Name:</strong> {{ user.name }}</li>
+                <li><strong>Email:</strong> {{ user.email }}</li>
+                <li><strong>Phone Number:</strong> {{ user.phone }}</li>
+                <li><strong>Age:</strong> {{ user.age }}</li>
+                <li><strong>Bio:</strong> {{ user.bio | safe }}</li> 
             </ul>
         </div>
 
