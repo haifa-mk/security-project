@@ -12,7 +12,12 @@
         <!-- Sign Up Form -->
         <div class="signup">
             <h2 class="form-title" id="signup"><span>or</span>Sign Up</h2>
-            <form method="POST" action="/register">
+             {% if error == 'weak_password' %}
+                <p style="color: #8B0000; text-align: center; font-size: 0.7em;">
+                    Password must be at least 8 characters long and include at least one number and one uppercase letter.
+                </p>
+            {% endif %}
+            <form method="POST" action="/register" enctype="multipart/form-data">
                 <div class="form-holder">
                     <input type="text" name="name" class="input" placeholder="Full Name" required />
                     <input type="email" name="email" class="input" placeholder="Email" required />
@@ -21,6 +26,11 @@
                     <input type="text" name="username" class="input" placeholder="Username" required />
                     <input type="password" name="password" class="input" placeholder="Password" required />
                     <input type="text" name="bio" class="input" placeholder="Short Bio" required /> 
+                    <div class="file-upload">
+                        <input type="file" id="pfp" name="pfp" class="input-file" accept="image/*" required />
+                        <label for="pfp" class="file-label">Choose Profile Picture</label>
+                    </div>
+
                 </div>
                 <button type="submit" name="signup" class="submit-btn">Sign Up</button>
             </form>
