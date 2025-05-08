@@ -131,5 +131,23 @@ In addition:
 To test:
 1. Register and upload an image file.
 2. Confirm that the image displays on your dashboard.
+
+
+##  Credits
+
+Some elements of the login and signup form (for styling) were adapted from CSS templates available on [FreeFrontend.com](https://freefrontend.com/). The design was modified to better align with the layout and functionality of this project.
+
+This project also utilizes several open-source Python libraries:
+
+- **Flask** – for building the web framework.
+- **Werkzeug** – for secure file handling.
+- **Flask-Limiter** – to implement rate limiting and prevent abuse.
+- **bcrypt** – for secure password hashing.
+- **bleach** – to sanitize user input and protect against XSS attacks.
+- **sqlite3** – for database operations.
+- Built-in modules such as **os**, **re**, and **datetime** – to handle file paths, regular expressions, and time-based logic.
+
+
+
    
 ---
