@@ -64,7 +64,7 @@ To verify RBAC:
 
 By default, all users who register through the application are assigned the role `"user"` for security reasons.  
 
-### ✅ How to Promote a User to Admin
+###  How to Promote a User to Admin
 
 To grant admin privileges to a trusted user, manually update their role in the database after registration.
 
