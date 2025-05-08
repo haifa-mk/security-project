@@ -60,12 +60,36 @@ To verify RBAC:
 3. Try visiting the admin page by replacing `/dashboard` with `/admin`.
 4. **Expected Result**: "Access denied, you are not an admin!" message with a 403 error.
 
-**Admin login:**
-1. Start registering a new user through the application.
-2. During registration use: `Username: admin`, this makes the role an admin role.
-3. After registration, login.
-4. Try visiting the admin page by replacing `/dashboard` with `/admin`.
-5. **Expected Result**: "Welcome to the admin panel!" message.
+## 🔐 Admin Login Setup
+
+By default, all users who register through the application are assigned the role `"user"` for security reasons.  
+
+### ✅ How to Promote a User to Admin
+
+To grant admin privileges to a trusted user, manually update their role in the database after registration.
+
+#### 📌 Step-by-step:
+
+1. Register the user normally through the application.
+2. After registration, manually update the user's role to `'admin'`.
+
+#### 💻 Example (Python):
+
+```python
+import sqlite3
+conn = sqlite3.connect('users.db')
+c = conn.cursor()
+c.execute("UPDATE users SET role='admin' WHERE username='admin_haifa'")
+conn.commit()
+conn.close()
+```
+Replace 'admin_haifa' with the actual username of the user you want to promote.
+
+3. Sign in.
+4. Try visiting the admin page by replacing /dashboard with /admin.
+5. **Expected Result**: "Welcome to the admin panel!" message. change to reprent changes]
+
+
 
 ### Encryption Using Session Tokens and HTTPS
 To protect sensitive data, encryption is used. Passwords are protected with bcrypt as mentioned above. Further, Flask sessions are protected with: 
