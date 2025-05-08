@@ -79,11 +79,11 @@ To grant admin privileges to a trusted user, manually update their role in the d
 import sqlite3
 conn = sqlite3.connect('users.db')
 c = conn.cursor()
-c.execute("UPDATE users SET role='admin' WHERE username='admin_haifa'")
+c.execute("UPDATE users SET role='admin' WHERE username='admin'")
 conn.commit()
 conn.close()
 ```
-Replace 'admin_haifa' with the actual username of the user you want to promote.
+Replace 'admin' with the actual username of the user you want to promote.
 
 3. Sign in.
 4. Try visiting the admin page by replacing /dashboard with /admin.
