@@ -60,7 +60,7 @@ To verify RBAC:
 3. Try visiting the admin page by replacing `/dashboard` with `/admin`.
 4. **Expected Result**: "Access denied, you are not an admin!" message with a 403 error.
 
-##  Admin Login Setup
+**Admin login:**
 
 By default, all users who register through the application are assigned the role `"user"` for security reasons.  
 
