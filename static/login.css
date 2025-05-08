@@ -11,12 +11,13 @@ html,body {
 	font-family: "Fira Sans", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: auto;
 }
 
 .form-structor {
 	background-color: #222;
 	border-radius: 15px;
-	height: 650px;
+	height: 750px;
 	width: 350px;
 	position: relative;
 	overflow: hidden;

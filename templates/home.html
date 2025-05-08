@@ -10,25 +10,29 @@
   <body>
     <div class="form-structor">
       <!-- Sign Up Form -->
-      <div class="signup">
-        <h2 class="form-title" id="signup"><span>or</span>Sign Up</h2>
-        <h2 class="form-title" id="signup"><span>or</span>Sign Up</h2>
-        {% with messages = get_flashed_messages() %} {% if messages %}
-        <p style="color: rgb(7, 7, 7); text-align: center">{{ messages[0] }}</p>
-        {% endif %} {% endwith %} {% if error == 'weak_password' %}
-        <p style="color: #8b0000; text-align: center; font-size: 0.7em">
-          Password must be at least 8 characters long and include at least one
-          number and one uppercase letter.
-        </p>
-        {% elif error == 'username_exists' %}
-        <p style="color: #8b0000; text-align: center; font-size: 0.7em">
-          This username is already taken. Please choose another.
-        </p>
-        {% elif error == 'email_exists' %}
-        <p style="color: #8b0000; text-align: center; font-size: 0.7em">
-          This email is already registered. Try logging in or use another.
-        </p>
-        {% endif %}
+        <div class="signup">
+            <h2 class="form-title" id="signup"><span>or</span>Sign Up</h2>
+            {% with messages = get_flashed_messages() %} {% if messages %}
+            <p style="color: rgb(7, 7, 7); text-align: center">{{ messages[0] }}</p>
+            {% endif %} {% endwith %} {% if error == 'weak_password' %}
+            <p style="color: #8b0000; text-align: center; font-size: 0.7em">
+            Password must be at least 8 characters long and include at least one
+            number and one uppercase letter.
+            </p>
+            {% elif error == 'username_exists' %}
+            <p style="color: #8b0000; text-align: center; font-size: 0.7em">
+            This username is already taken. Please choose another.
+            </p>
+            {% elif error == 'email_exists' %}
+            <p style="color: #8b0000; text-align: center; font-size: 0.7em">
+            This email is already registered. Try logging in or use another.
+            </p>
+            {% elif error == 'password_mismatch' %}
+            <p style="color: #8b0000; text-align: center; font-size: 0.7em">
+            Passwords do not match. Please try again.
+            </p>
+
+            {% endif %}
 
         <form method="POST" action="/register" enctype="multipart/form-data">
           <div class="form-holder">
@@ -74,6 +78,14 @@
               placeholder="Password"
               required
             />
+            <input
+              type="password"
+              name="confirm_password"
+              class="input"
+              placeholder="Confirm Password"
+              required
+            />
+
             <input
               type="text"
               name="bio"

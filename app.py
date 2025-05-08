@@ -94,6 +94,7 @@ def is_strong_password(password):
 def register():
     username = request.form['username']
     password = request.form['password']
+    confirm_password = request.form['confirm_password']  
     name = request.form['name']
     email = request.form['email']
     phone = request.form['phone']
@@ -102,6 +103,9 @@ def register():
 
     # Cleans bio input to prevent invalid html tags to prevent XSS attacks
     bio = bleach.clean(request.form['bio'], tags=allowed_tags, attributes=allowed_attrs, strip=True)
+    # Check if passwords match
+    if password != confirm_password:
+        return redirect(url_for('home', show_signup=True, error='password_mismatch'))
    
     #Extra 3: Check if the password is strong enough before proceeding
     if not is_strong_password(password):
