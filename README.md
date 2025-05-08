@@ -60,7 +60,7 @@ To verify RBAC:
 3. Try visiting the admin page by replacing `/dashboard` with `/admin`.
 4. **Expected Result**: "Access denied, you are not an admin!" message with a 403 error.
 
-## 🔐 Admin Login Setup
+##  Admin Login Setup
 
 By default, all users who register through the application are assigned the role `"user"` for security reasons.  
 
@@ -68,12 +68,12 @@ By default, all users who register through the application are assigned the role
 
 To grant admin privileges to a trusted user, manually update their role in the database after registration.
 
-#### 📌 Step-by-step:
+####  Step-by-step:
 
 1. Register the user normally through the application.
 2. After registration, manually update the user's role to `'admin'`.
 
-#### 💻 Example (Python):
+####  Example (Python):
 
 ```python
 import sqlite3
