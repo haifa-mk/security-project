@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session, url_for , flash, get_flashed_messages
 import sqlite3
 import bcrypt
 import bleach
@@ -63,7 +63,7 @@ def init_db():
             username TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL,  --  Password stored as plain text (no hashing)
             name TEXT NOT NULL,
-            email TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
             phone TEXT NOT NULL,
             age INTEGER NOT NULL,
             bio TEXT,
@@ -121,6 +121,19 @@ def register():
 
     conn = sqlite3.connect('users.db')
     c = conn.cursor()
+    
+    # Check if username exists
+    c.execute("SELECT * FROM users WHERE username=?", (username,))
+    if c.fetchone():
+        conn.close()
+        return redirect(url_for('home', show_signup=True, error='username_exists'))
+
+    # Check if email exists
+    c.execute("SELECT * FROM users WHERE email=?", (email,))
+    if c.fetchone():
+        conn.close()
+        return redirect(url_for('home', show_signup=True, error='email_exists'))
+
     try:
         #  Vulnerable to SQL Injection: user inputs directly injected into SQL query
         # c.execute(f"INSERT INTO users (username, password, name, email, phone, age, bio, role, pfp_path) VALUES ('{username}', '{password}', '{name}', '{email}', '{phone}', '{age}', '{bio}', '{role}', '{pfp_path}')")
@@ -138,7 +151,7 @@ def register():
         conn.close()
         return redirect('/')
     conn.close()
-
+    flash("Sign-up successful!") 
     return redirect(url_for('home', show_login=True))
 
 #Extra 5: limit login attempts to prevent brute force attack 

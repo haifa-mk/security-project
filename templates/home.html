@@ -1,70 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login / Sign Up</title>
-    <link rel="stylesheet" href="../static/login.css">
+    <link rel="stylesheet" href="../static/login.css" />
     <script src="../static/script.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="form-structor">
-        <!-- Sign Up Form -->
-        <div class="signup">
-            <h2 class="form-title" id="signup"><span>or</span>Sign Up</h2>
-             {% if error == 'weak_password' %}
-                <p style="color: #8B0000; text-align: center; font-size: 0.7em;">
-                    Password must be at least 8 characters long and include at least one number and one uppercase letter.
-                </p>
-            {% endif %}
-            <form method="POST" action="/register" enctype="multipart/form-data">
-                <div class="form-holder">
-                    <input type="text" name="name" class="input" placeholder="Full Name" required />
-                    <input type="email" name="email" class="input" placeholder="Email" required />
-                    <input type="text" name="phone" class="input" placeholder="Phone Number" required />
-                    <input type="number" name="age" class="input" placeholder="Age" required />
-                    <input type="text" name="username" class="input" placeholder="Username" required />
-                    <input type="password" name="password" class="input" placeholder="Password" required />
-                    <input type="text" name="bio" class="input" placeholder="Short Bio" required /> 
-                    <div class="file-upload">
-                        <input type="file" id="pfp" name="pfp" class="input-file" accept="image/*" required />
-                        <label for="pfp" class="file-label">Choose Profile Picture</label>
-                    </div>
+      <!-- Sign Up Form -->
+      <div class="signup">
+        <h2 class="form-title" id="signup"><span>or</span>Sign Up</h2>
+        <h2 class="form-title" id="signup"><span>or</span>Sign Up</h2>
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <p style="color: rgb(7, 7, 7); text-align: center">{{ messages[0] }}</p>
+        {% endif %} {% endwith %} {% if error == 'weak_password' %}
+        <p style="color: #8b0000; text-align: center; font-size: 0.7em">
+          Password must be at least 8 characters long and include at least one
+          number and one uppercase letter.
+        </p>
+        {% elif error == 'username_exists' %}
+        <p style="color: #8b0000; text-align: center; font-size: 0.7em">
+          This username is already taken. Please choose another.
+        </p>
+        {% elif error == 'email_exists' %}
+        <p style="color: #8b0000; text-align: center; font-size: 0.7em">
+          This email is already registered. Try logging in or use another.
+        </p>
+        {% endif %}
 
-                </div>
-                <button type="submit" name="signup" class="submit-btn">Sign Up</button>
-            </form>
-        </div>
-
-        <!-- Login Form -->
-        <div class="login slide-up">
-            <div class="center">
-                <h2 class="form-title" id="login"><span>or</span>Log In</h2>
-
-                {% if error == 'invalid' %}
-                    <p style="color: red; text-align: center;">Invalid username or password. Please try again.</p>
-                {% endif %}
-
-                <form method="POST" action="/login">
-                    <div class="form-holder">
-                        <input type="text" name="username" class="input" placeholder="Username" required />
-                        <input type="password" name="password" class="input" placeholder="Password" required />
-                    </div>
-                    <button type="submit" name="login" class="submit-btn">Log In</button>
-                </form>
-                
+        <form method="POST" action="/register" enctype="multipart/form-data">
+          <div class="form-holder">
+            <input
+              type="text"
+              name="name"
+              class="input"
+              placeholder="Full Name"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              class="input"
+              placeholder="Email"
+              required
+            />
+            <input
+              type="text"
+              name="phone"
+              class="input"
+              placeholder="Phone Number"
+              required
+            />
+            <input
+              type="number"
+              name="age"
+              class="input"
+              placeholder="Age"
+              required
+            />
+            <input
+              type="text"
+              name="username"
+              class="input"
+              placeholder="Username"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              class="input"
+              placeholder="Password"
+              required
+            />
+            <input
+              type="text"
+              name="bio"
+              class="input"
+              placeholder="Short Bio"
+              required
+            />
+            <div class="file-upload">
+              <input
+                type="file"
+                id="pfp"
+                name="pfp"
+                class="input-file"
+                accept="image/*"
+                required
+              />
+              <label for="pfp" class="file-label">Choose Profile Picture</label>
             </div>
+          </div>
+          <button type="submit" name="signup" class="submit-btn">
+            Sign Up
+          </button>
+        </form>
+      </div>
+
+      <!-- Login Form -->
+      <div class="login slide-up">
+        <div class="center">
+          <h2 class="form-title" id="login"><span>or</span>Log In</h2>
+
+          {% if error == 'invalid' %}
+          <p style="color: red; text-align: center">
+            Invalid username or password. Please try again.
+          </p>
+          {% endif %}
+
+          <form method="POST" action="/login">
+            <div class="form-holder">
+              <input
+                type="text"
+                name="username"
+                class="input"
+                placeholder="Username"
+                required
+              />
+              <input
+                type="password"
+                name="password"
+                class="input"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <button type="submit" name="login" class="submit-btn">
+              Log In
+            </button>
+          </form>
         </div>
+      </div>
     </div>
 
     <script>
-        window.onload = function() {
-            const showLogin = "{{ show_login }}";
-            if (showLogin === "True") {
-                document.querySelector('.login').classList.remove('slide-up');
-                document.querySelector('.signup').classList.add('slide-up');
-            }
+      window.onload = function () {
+        const showLogin = "{{ show_login }}";
+        if (showLogin === "True") {
+          document.querySelector(".login").classList.remove("slide-up");
+          document.querySelector(".signup").classList.add("slide-up");
         }
+      };
     </script>
-</body>
+  </body>
 </html>
