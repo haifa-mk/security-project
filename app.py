@@ -142,8 +142,7 @@ def register():
         #  Vulnerable to SQL Injection: user inputs directly injected into SQL query
         # c.execute(f"INSERT INTO users (username, password, name, email, phone, age, bio, role, pfp_path) VALUES ('{username}', '{password}', '{name}', '{email}', '{phone}', '{age}', '{bio}', '{role}', '{pfp_path}')")
         # new secure code
-        role = 'admin' if username == 'admin' else 'user' 
-
+        role = 'user'    # Assign 'user' role by default  only verified admins are promoted manually in the database
         c.execute("""
             INSERT INTO users (username, password, name, email, phone, age, bio, role, pfp_path)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
