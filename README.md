@@ -87,7 +87,7 @@ Replace 'admin123' with the actual username of the user you want to promote.
 
 3. Sign in.
 4. Try visiting the admin page by replacing /dashboard with /admin.
-5. **Expected Result**: "Welcome to the admin panel!" message. change to reprent changes]
+5. **Expected Result**: "Welcome to the admin panel!" message.
 
 
 
