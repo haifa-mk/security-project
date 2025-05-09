@@ -34,6 +34,8 @@ To verify the hashing:
 3. Navigate to the `users` table and view the `password` column.
 4. **Expected Result**: The stored password should appear as a long, hashed string starting with `$2b$`, confirming that bcrypt hashing is applied and passwords are not stored with the original weak MD5 Algorithm.
 
+---
+
 ### Cross-Site Scripting (XSS) Protection Using Input Sanitization
 
 The application uses the bleach library to sanitize user-generated HTML content (e.g., the user bio) before storing or displaying it. This prevents malicious scripts from being injected and executed in the browser.
@@ -47,6 +49,8 @@ To verify XSS protection:
 3. Submit the registration form.
 4. After registration, login.
 5.  **Expected Result**: The JavaScript alert should not run, and the <script> tag will be displayed as regular text.
+
+---
 
 ### Role-Based Access Control (RBAC)
 
@@ -89,7 +93,7 @@ Replace 'admin123' with the actual username of the user you want to promote.
 4. Try visiting the admin page by replacing /dashboard with /admin.
 5. **Expected Result**: "Welcome to the admin panel!" message.
 
-
+---
 
 ### Encryption Using Session Tokens and HTTPS
 To protect sensitive data, encryption is used. Passwords are protected with bcrypt as mentioned above. Further, Flask sessions are protected with: 
@@ -102,12 +106,15 @@ The app is configured to run over HTTPS using a local SSL certificate. To verify
 ```
 https://127.0.0.1:5000/
 ```
+---
 
 ## Additional Enhancements ✨
 
-### Login Attempt Limiting to Prevent Brute Force Attack
+### Login Attempt Limiting to Prevent Brute Force Attacks
 
 The application tracks login attempts and temporarily blocks IP addresses or accounts after a set number of failed login attempts. This helps prevent brute force attacks and password guessing.
+
+---
 
 ### Request Rate Limiting
 
@@ -117,9 +124,13 @@ To prevent abuse such as spamming or denial of service (DoS) attacks, the server
 
 Exceeding this limit results in an error.
 
+---
+
 ### Strong Password Enforcement
 
 Users must choose strong passwords (minimum length of 8, use of uppercase and numbers). This mitigates the risk of account compromise through password guessing or dictionary attacks.
+
+---
 
 ### Profile Picture Upload with Secure Handling
 
@@ -128,7 +139,7 @@ In addition:
 - File names are sanitized using `werkzeug.utils.secure_filename()` to prevent directory traversal and overwriting system files.
 - Uploaded files are stored in a safe, non-public directory.
 
-To test:
+To verify:
 1. Register and upload an image file.
 2. Confirm that the image displays on your dashboard.
 
