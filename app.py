@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, url_for , flash, get_flashed_messages
 import sqlite3
+import hashlib
 import bcrypt
 import bleach
 import os
@@ -121,6 +122,10 @@ def register():
         pfp_file.save(pfp_path)
         pfp_path = pfp_path.replace('\\', '/')
 
+    #insecure password hashing with MD5 (initial implementation )
+    #hashed_password = hashlib.md5(password.encode('utf-8')).hexdigest()
+    
+    #secure code: password hashing with bycrypt
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
     conn = sqlite3.connect('users.db')
@@ -187,7 +192,27 @@ def login():
     #    return redirect('/dashboard')
     #else:
      #   return redirect(url_for('home', show_login=True, error='invalid'))
-# new secure code
+     
+
+     #weak password storage
+     # Use MD5 to verify the password (weak version)
+    #if user:
+      #stored_password = user[2]    
+    
+    #if stored_password == hashlib.md5(password.encode('utf-8')).hexdigest():
+     # session['username'] = user[1]
+      #session['role'] = user[8]
+     # failed_logins.pop(username, None)
+      #return redirect('/dashboard')
+    # Login failed path (user not found or password mismatch)
+    #if username in failed_logins:
+    #   failed_logins[username] = (failed_logins[username][0] + 1, datetime.now())
+    #else:
+    #  failed_logins[username] = (1, datetime.now())
+
+    #return redirect(url_for('home', show_login=True, error='invalid'))
+   
+   #new secure code for password storage with bycrypt
     if user and bcrypt.checkpw(password.encode('utf-8'), user[2]):
         session['username'] = user[1]
         session['role'] = user[8]
